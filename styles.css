@@ -179,7 +179,8 @@ button:hover{
 
 @media only screen and (max-width: 600px) {
     .calc-main {
-      margin: 0%;
+      margin: 0% 1% 0%;
+      padding: 2rem;
     }
     .calc-result-row{
         margin-bottom: 2rem;
