@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,21 +9,115 @@
     <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
 
     <!-- Bootstrap CSS -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
     <!-- JQuery  -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <title>Frontend Mentor | Tip calculator app</title>
 
     <style>
-        .attribution { font-size: 11px; text-align: center; }
-        .attribution a { color: hsl(228, 45%, 44%); }
+        .attribution {
+            font-size: 11px;
+            text-align: center;
+        }
+
+        .attribution a {
+            color: hsl(228, 45%, 44%);
+        }
     </style>
 
-  </head>
-  <body>
-    <h1>Hello, world!</h1>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container-fluid calc-container">
+        <img class="calc-logo center" src="images/logo.svg" alt="SPLITTER">
+        <div class="calc-main row">
+            <div class="col-lg-6 calc-input">
+                <div>
+                    <div class="mb-5">
+                        <label for="billAmount" class="form-label">Bill</label>
+                        <div>
+                            <div class="static-input-group">$</div>
+                            <input type="number" class="form-control" name="Bill Amount" id="billAmount" min="1"
+                                placeholder="0">
+                        </div>
+                    </div>
+                    <div class="mb-5">
+                        <label class="form-label">Select Tip %</label>
+                        <div class="row">
+                            <div class="col-xl-4 col-6 calc-tip-percentage-container">
+                                <button class="calc-tip-percentage" id="btn-05">5%</button>
+                            </div>
+                            <div class="col-xl-4 col-6 calc-tip-percentage-container">
+                                <button class="calc-tip-percentage" id="btn-10">10%</button>
+                            </div>
+                            <div class="col-xl-4 col-6 calc-tip-percentage-container">
+                                <button class="calc-tip-percentage" id="btn-15">15%</button>
+                            </div>
+                            <div class="col-xl-4 col-6 calc-tip-percentage-container">
+                                <button class="calc-tip-percentage" id="btn-20">20%</button>
+                            </div>
+                            <div class="col-xl-4 col-6 calc-tip-percentage-container">
+                                <button class="calc-tip-percentage" id="btn-25">25%</button>
+                            </div>
+                            <div class="col-xl-4 col-6 calc-tip-percentage-container">
+                                <input type="number" name="tipPercentage" id="tipPercentage" class="calc-tip-percentage-custom form-control"
+                                    placeholder="Custom" min="0">
+                                <!-- <div class="calc-tip-percentage-custom">Custom</div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="calc-people-label-container">
+                            <label for="peopleCount" class="form-label">Number of People</label>
+                            <span id="errorMessage" hidden>Can't be zero</span>
+                        </div>
+                        <div>
+                            <div class="static-input-group">
+                                <img src="images/icon-person.svg" alt="P">
+                            </div>
+                            <input type="number" class="form-control" name="Number of People" id="peopleCount" min="1"
+                                placeholder="0">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 calc-result">
+                <div class="calc-result-values">
+                    <div class="calc-result-row">
+                        <div class="calc-result-label">
+                            Tip Amount
+                            <div class="calc-result-label-subtext">
+                                / person
+                            </div>
+                        </div>
+                        <div class="calc-result-value">
+                            <span id="averageTip">$0.00</span>
+                        </div>
+                    </div>
+                    <div class="calc-result-row">
+                        <div class="calc-result-label">
+                            Total
+                            <div class="calc-result-label-subtext">
+                                / person
+                            </div>
+                        </div>
+                        <div class="calc-result-value">
+                            <span id="averageBill">$0.00</span>
+                        </div>
+                    </div>
+                    <button class="btn reset-btn" disabled>RESET</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
 
@@ -34,11 +129,13 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
     -->
-    
+
     <div class="attribution">
-        Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+        Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
         Coded by <a href="#">Jeevan Swarna</a>.
     </div>
 
-  </body>
+    <script src="index.js"></script>
+</body>
+
 </html>
